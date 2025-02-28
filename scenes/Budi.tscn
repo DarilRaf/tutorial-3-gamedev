@@ -1,0 +1,93 @@
+[gd_scene load_steps=11 format=3 uid="uid://bhdlwyaa01qca"]
+
+[ext_resource type="Script" path="res://scenes/budi.gd" id="1_qntib"]
+[ext_resource type="Texture2D" uid="uid://bkpt0drvjiw2q" path="res://assets/kenney_platformercharacters/PNG/Soldier/Poses/soldier_stand.png" id="2_cnxb2"]
+[ext_resource type="Texture2D" uid="uid://iky2ci5f3d5h" path="res://assets/kenney_platformercharacters/PNG/Soldier/soldier_tilesheet.png" id="3_10mkj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74lby"]
+atlas = ExtResource("3_10mkj")
+region = Rect2(240, 0, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xew2m"]
+atlas = ExtResource("3_10mkj")
+region = Rect2(400, 220, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_co23i"]
+atlas = ExtResource("3_10mkj")
+region = Rect2(80, 0, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2dat"]
+atlas = ExtResource("3_10mkj")
+region = Rect2(0, 110, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5w37c"]
+atlas = ExtResource("3_10mkj")
+region = Rect2(80, 110, 80, 110)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bfc7p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74lby")
+}],
+"loop": false,
+"name": &"crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xew2m")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_co23i")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2dat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5w37c")
+}],
+"loop": true,
+"name": &"running",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wnf3"]
+
+[node name="Budi" type="CharacterBody2D"]
+script = ExtResource("1_qntib")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_cnxb2")
+
+[node name="SpriteBudi" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bfc7p")
+animation = &"crouch"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 12)
+scale = Vector2(2.90367, 3.88484)
+shape = SubResource("RectangleShape2D_6wnf3")
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="DashDurationTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="DashDurationTimer" to="." method="_on_dash_duration_timer_timeout"]

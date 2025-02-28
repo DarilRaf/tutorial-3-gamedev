@@ -1,14 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsyfep1odrxje"]
+[gd_scene load_steps=4 format=3 uid="uid://dsyfep1odrxje"]
 
-[ext_resource type="PackedScene" path="res://Scenes/Ground.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://dgulqc1guobxq" path="res://scenes/Ground.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://bghgrvh0uje2h" path="res://assets/bg.png" id="1_1fnge"]
+[ext_resource type="PackedScene" uid="uid://bhdlwyaa01qca" path="res://scenes/Budi.tscn" id="2_nim4t"]
 
 [node name="Root" type="Node2D"]
 
+[node name="Sky" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_1fnge")
+
 [node name="Ground" parent="." instance=ExtResource("1")]
-position = Vector2(507.708, 363.86)
+position = Vector2(572.758, 490.806)
 
 [node name="Ground2" parent="." instance=ExtResource("1")]
-position = Vector2(789.149, 294.054)
+position = Vector2(854.199, 421)
 
 [node name="Ground3" parent="." instance=ExtResource("1")]
-position = Vector2(225.95, 294.562)
+position = Vector2(291, 421.508)
+
+[node name="Budi" parent="." instance=ExtResource("2_nim4t")]
+position = Vector2(502, 104)
