@@ -102,7 +102,7 @@ func _on_dash_timer_timeout():
 	can_dash = false
 
 
-func start_dash(direction):
+func start_dash(_direction):
 	is_dashing = true
 	can_dash = false
 	dash_duration_timer.start()
