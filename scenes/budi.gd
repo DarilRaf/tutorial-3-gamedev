@@ -1,4 +1,3 @@
-@icon("res://icon.png")
 extends CharacterBody2D
 
 @export var gravity = 1000.0
@@ -6,21 +5,22 @@ extends CharacterBody2D
 @export var crouch_speed = 100
 @export var jump_speed = -400
 
-# Tweak for a snappier dash
 @export var dash_speed = 600
 @export var dash_duration = 0.2
 @export var dash_cooldown = 0.3
 
-@onready var dash_timer: Timer = $DashTimer
-@onready var dash_duration_timer: Timer = $DashDurationTimer
-@onready var sprite_budi: AnimatedSprite2D = $SpriteBudi
-@onready var collision_budi: CollisionShape2D = $CollisionShape2D
-
+# Normal variables
 var crouching = false
 var double_jump = true
 var can_dash = false
 var is_dashing = false
 var last_move_dir = 0
+
+# Onready variables should come after exported variables
+@onready var dash_timer: Timer = $DashTimer
+@onready var dash_duration_timer: Timer = $DashDurationTimer
+@onready var sprite_budi: AnimatedSprite2D = $SpriteBudi
+@onready var collision_budi: CollisionShape2D = $CollisionShape2D
 
 
 func _physics_process(delta):
