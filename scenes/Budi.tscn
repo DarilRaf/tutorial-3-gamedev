@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://bhdlwyaa01qca"]
+[gd_scene load_steps=10 format=3 uid="uid://bhdlwyaa01qca"]
 
 [ext_resource type="Script" path="res://scenes/budi.gd" id="1_qntib"]
-[ext_resource type="Texture2D" uid="uid://bkpt0drvjiw2q" path="res://assets/kenney_platformercharacters/PNG/Soldier/Poses/soldier_stand.png" id="2_cnxb2"]
 [ext_resource type="Texture2D" uid="uid://iky2ci5f3d5h" path="res://assets/kenney_platformercharacters/PNG/Soldier/soldier_tilesheet.png" id="3_10mkj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_74lby"]
@@ -66,10 +65,6 @@ animations = [{
 
 [node name="Budi" type="CharacterBody2D"]
 script = ExtResource("1_qntib")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("2_cnxb2")
 
 [node name="SpriteBudi" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bfc7p")

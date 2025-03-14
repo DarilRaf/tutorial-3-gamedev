@@ -1,0 +1,87 @@
+[gd_scene load_steps=13 format=3 uid="uid://eulrc2rs0cl7"]
+
+[ext_resource type="Script" path="res://scenes/monster.gd" id="1_y2jjf"]
+[ext_resource type="Texture2D" uid="uid://00p78i3okf7w" path="res://assets/tilemap-characters_packed.png" id="2_hubao"]
+[ext_resource type="Texture2D" uid="uid://d2w5s67qoymf2" path="res://assets/kenney_platformercharacters/PNG/Zombie/zombie_tilesheet.png" id="2_on0jw"]
+[ext_resource type="AudioStream" uid="uid://bp0rjhyetj6gi" path="res://assets/sound/impactMetal_light_003.ogg" id="4_djw5a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqyt4"]
+atlas = ExtResource("2_hubao")
+region = Rect2(144, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skkyf"]
+atlas = ExtResource("2_hubao")
+region = Rect2(168, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbgcj"]
+atlas = ExtResource("2_hubao")
+region = Rect2(192, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bf3eg"]
+atlas = ExtResource("2_on0jw")
+region = Rect2(0, 110, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kd01"]
+atlas = ExtResource("2_on0jw")
+region = Rect2(80, 110, 80, 110)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tutq6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqyt4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skkyf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbgcj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bf3eg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kd01")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g10v6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3a0dq"]
+size = Vector2(52, 66)
+
+[node name="Monster" type="CharacterBody2D"]
+script = ExtResource("1_y2jjf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_tutq6")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.977172
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 10)
+scale = Vector2(2.1293, 1.87526)
+shape = SubResource("CapsuleShape2D_g10v6")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 9)
+scale = Vector2(1.36704, 0.977196)
+shape = SubResource("RectangleShape2D_3a0dq")
+
+[node name="AudioHit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_djw5a")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

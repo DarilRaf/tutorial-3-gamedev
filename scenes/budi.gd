@@ -110,3 +110,7 @@ func start_dash(_direction):
 
 func _on_dash_duration_timer_timeout():
 	is_dashing = false
+
+
+func _on_falling_area_body_entered(body: Node2D) -> void:
+	get_tree().reload_current_scene()
